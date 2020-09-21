@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AppRouter from "components/Router";
 import { authService } from "myFirebase";
 
 export default function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(authService.currentUser);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(() => {
+    authService.onAuthStateChanged((user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+      setIsLoaded(true);
+    });
+  }, []);
   return (
     <>
       <AppRouter isLoggedIn={isLoggedIn} />
