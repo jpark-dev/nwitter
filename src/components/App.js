@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import AppRouter from "./Router";
 
 export default function App() {
-  return <AppRouter />;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  return (
+    <>
+      <AppRouter isLoggedIn={isLoggedIn} />
+      <footer>&copy; Nwsitter {new Date().getFullYear()}</footer>
+    </>
+  );
 }
