@@ -17,7 +17,8 @@ export default function App() {
   }, []);
   return (
     <>
-      <AppRouter isLoggedIn={isLoggedIn} />
+      {isLoaded ? <AppRouter isLoggedIn={isLoggedIn} /> : "Loading..."}
+
       <footer>&copy; Nwsitter {new Date().getFullYear()}</footer>
     </>
   );
