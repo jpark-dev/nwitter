@@ -1,5 +1,6 @@
 # Nwitter
 This is a twitter-like project to learn and explore how Google Firebase works and how to use it with react app.
+
 At the end of the project, I'd like to be more familiar with followings:
 - Environtment setup for react
 - Google Firebase and its documentation
@@ -37,10 +38,13 @@ npm install --save-dev
 Create an empty .env file in the root directory
 
 ### 2. Creating Firebase account, a new project and a new app to get credentials for firebase app.
-You must have a google account to use firebase.
-Go to [firebase website](https://firebase.google.com) and register with your account by clicking 'get started' button.
-Once registered, go to your [firebase console](https://console.firebase.google.com/) and create a new project. Name it as 'nwitter'
-Once created, add a new app called 'Nwitter' and check the information under the 'Firebase SDK Snippet'.
+i. You must have a google account to use firebase.
+
+ii. Go to [firebase website](https://firebase.google.com) and register with your account by clicking 'get started' button.
+
+iii. Once registered, go to your [firebase console](https://console.firebase.google.com/) and create a new project. Name it as 'nwitter'
+
+iiii. Once created, add a new app called 'Nwitter' and check the information under the 'Firebase SDK Snippet'.
 
 ### 3. Filling empty values with credentials from firebase
 
