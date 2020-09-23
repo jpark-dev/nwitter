@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { dbService } from "myFirebase";
 
 const Home = () => {
   const [nweet, setNweet] = useState("");
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
+    console.log("submit!!", nweet);
     e.preventDefault();
+    await dbService.collection("nweets").add({
+      nweet,
+      createdAt: Date.now(),
+    });
+    setNweet("");
   };
   const onChange = (e) => {
     const {
@@ -13,8 +20,14 @@ const Home = () => {
   };
   return (
     <div>
-      <form onSumbit={onSubmit}>
-        <input type="text" placeholder="What's on your mind?" maxLength={120} />
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          onChange={onChange}
+          placeholder="What's on your mind?"
+          maxLength={120}
+          value={nweet}
+        />
         <input type="submit" value="Nweet" />
       </form>
     </div>
