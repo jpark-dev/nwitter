@@ -27,7 +27,7 @@ At the end of the project, I'd like to be more familiar with followings:
 
 Clone the project with command:
 ```
-git clone git@github.com:jpark-dev/nwitter.git
+git clone git@github.com:jpark-dev/nwitter.git <folder name>
 ```
 
 Install related modules:
@@ -67,6 +67,8 @@ Example:
 REACT_APP_API_KEY=B9df8wefjdkfej252515125
 REACT_APP_DATABASE_URL=https://nwitter-9f1e7.fire.com
 ```
+
+#### Don't forget to save!!
 
 ### 4. Starting the App
 Execute `npm start` in your terminal/CLI.
