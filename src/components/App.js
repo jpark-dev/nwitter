@@ -19,7 +19,7 @@ export default function App() {
     <>
       {isLoaded ? <AppRouter isLoggedIn={isLoggedIn} /> : "Loading..."}
 
-      <footer>&copy; Nwsitter {new Date().getFullYear()}</footer>
+      <footer>&copy; Nwitter {new Date().getFullYear()}</footer>
     </>
   );
 }
