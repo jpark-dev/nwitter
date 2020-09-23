@@ -1,68 +1,75 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Nwitter
+This is a twitter-like project to learn and explore how Google Firebase works and how to use it with react app.
+At the end of the project, I'd like to be more familiar with followings:
+- Environtment setup for react
+- Google Firebase and its documentation
+- Understanding and use of noSQL
+- Social logins using google/github accounts, via firebase
+- Use of ES6 shorthand and spreader
+- Online deployment of finished app to use as a portfolio
 
-## Available Scripts
+## Project goal
+- User Authentication
+- User Profile page
+- Upload photos
+- social login (google/github login) via firebase
+- email login (email/password) via firebase
+- noSQL database manipulation via firebase
+- React frontend for real-time tweets
 
-In the project directory, you can run:
+## Check out the working app!!
+- This is to be implemented soon.
 
-### `yarn start`
+## Application Setup Guide
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### 1. Cloning project & module installation
+
+Clone the project with command:
+```
+git clone git@github.com:jpark-dev/nwitter.git
+```
+
+Install related modules:
+```
+npm install --save-dev
+```
+
+Create an empty .env file in the root directory
+
+### 2. Creating Firebase account, a new project and a new app to get credentials for firebase app.
+You must have a google account to use firebase.
+Go to [firebase website](https://firebase.google.com) and register with your account by clicking 'get started' button.
+Once registered, go to your [firebase console](https://console.firebase.google.com/) and create a new project. Name it as 'nwitter'
+Once created, add a new app called 'Nwitter' and check the information under the 'Firebase SDK Snippet'.
+
+### 3. Filling empty values with credentials from firebase
+
+Copy and paste these lines to your .env file.
+```
+REACT_APP_API_KEY=
+REACT_APP_AUTH_DOMAIN=
+REACT_APP_DATABASE_URL=
+REACT_APP_PROJECT_ID=
+REACT_APP_STORAGE_BUCKET=
+REACT_APP_MESSAGING_SENDER_ID=
+REACT_APP_APP_ID=
+```
+Fill .env file with the credentials obtained from above.
+Make sure to omit double quotes("") for all values.
+
+Example:
+
+```
+REACT_APP_API_KEY=B9df8wefjdkfej252515125
+REACT_APP_DATABASE_URL=https://nwitter-9f1e7.fire.com
+```
+
+### 4. Starting the App
+Execute `npm start` in your terminal/CLI.
+
+This will automatically open a new window, and start the app with [http://localhost:3000](http://localhost:3000).
+If it doesn't open a new browser, open [http://localhost:3000](http://localhost:3000) to view it in the browser manually.
 
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
