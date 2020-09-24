@@ -1,7 +1,10 @@
+import React, { useState } from "react";
 import { dbService } from "myFirebase";
-import React from "react";
 
 const Nweet = ({ nweetObj, isOwner }) => {
+  const [editing, setEditing] = useState(false);
+  const [newNweet, setNewNweet] = useState(nweetObj.text);
+
   const onDeleteClick = () => {
     const proceedDelete = window.confirm("Delete this nweet?");
 
@@ -9,14 +12,47 @@ const Nweet = ({ nweetObj, isOwner }) => {
       dbService.doc(`nweets/${nweetObj.id}`).delete();
     }
   };
-
+  const toggleEditing = () => {
+    setEditing(prev => !prev);
+  };
+  const onSubmit = e => {
+    e.preventDefault();
+    dbService.doc(`nweets/${nweetObj.id}`).update({
+      text: newNweet,
+    });
+    setEditing(false);
+  };
+  const onChange = e => {
+    const {
+      target: { value },
+    } = e;
+    setNewNweet(value);
+  };
   return (
     <div>
-      <h4>{nweetObj.text}</h4>
-      {isOwner && (
+      {editing ? (
         <>
-          <button onClick={onDeleteClick}>Delete</button>
-          <button>Edit</button>
+          <form onSubmit={onSubmit}>
+            <input
+              type="text"
+              placeholder="Edit your nweet"
+              value={newNweet}
+              onChange={onChange}
+              required
+            />
+            <input type="submit" value="Update Nweet" />
+          </form>
+          <button onClick={toggleEditing}>Cancel</button>
+        </>
+      ) : (
+        <>
+          <h4>{nweetObj.text}</h4>
+          {isOwner && (
+            <>
+              <button onClick={onDeleteClick}>Delete</button>
+              <button onClick={toggleEditing}>Edit</button>
+            </>
+          )}
         </>
       )}
     </div>
