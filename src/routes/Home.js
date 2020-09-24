@@ -4,21 +4,26 @@ import { dbService } from "myFirebase";
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const getNweets = async () => {
-    const dbNweets = await dbService.collection("nweets").get();
-    dbNweets.forEach(doc => {
-      const nweetObj = {
-        ...doc.data(),
-        id: doc.id,
-      };
-      setNweets(prev => [nweetObj, ...prev]);
-    });
-  };
+  // mapping through dbService.collection would not re-render
+  // const getNweets = async () => {
+  //   const dbNweets = await dbService.collection("nweets").get();
+  //   dbNweets.forEach(doc => {
+  //     const nweetObj = {
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     };
+  //     setNweets(prev => [nweetObj, ...prev]);
+  //   });
+  // };
 
   useEffect(() => {
-    getNweets();
-    dbService.collection("nweets").onSnapshot(snapShot => {
-      console.log("something happened");
+    // getNweets();
+    dbService.collection("nweets").onSnapshot(snapshot => {
+      const nweetArr = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      console.log(nweetArr);
     });
   }, []);
   const onSubmit = async e => {
