@@ -10,6 +10,7 @@ At the end of the project, I'd like to be more familiar with followings:
 - Online deployment of finished app to use as a portfolio
 
 ## Project goal
+- Real-time CRUD of Nweets
 - User Authentication
 - User Profile page
 - Upload photos
