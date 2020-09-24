@@ -5,10 +5,12 @@ import { authService } from "myFirebase";
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userObj, setUserObj] = useState(null);
   useEffect(() => {
-    authService.onAuthStateChanged((user) => {
+    authService.onAuthStateChanged(user => {
       if (user) {
         setIsLoggedIn(true);
+        setUserObj(user);
       } else {
         setIsLoggedIn(false);
       }
@@ -17,7 +19,11 @@ export default function App() {
   }, []);
   return (
     <>
-      {isLoaded ? <AppRouter isLoggedIn={isLoggedIn} /> : "Loading..."}
+      {isLoaded ? (
+        <AppRouter isLoggedIn={isLoggedIn} userObj={userObj} />
+      ) : (
+        "Loading..."
+      )}
 
       <footer>&copy; Nwitter {new Date().getFullYear()}</footer>
     </>

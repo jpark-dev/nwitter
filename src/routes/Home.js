@@ -1,38 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "myFirebase";
 
-const Home = () => {
+const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
   const getNweets = async () => {
     const dbNweets = await dbService.collection("nweets").get();
-    dbNweets.forEach((doc) => {
+    dbNweets.forEach(doc => {
       const nweetObj = {
         ...doc.data(),
         id: doc.id,
       };
-      setNweets((prev) => [nweetObj, ...prev]);
+      setNweets(prev => [nweetObj, ...prev]);
     });
   };
 
   useEffect(() => {
     getNweets();
+    dbService.collection("nweets").onSnapshot(snapShot => {
+      console.log("something happened");
+    });
   }, []);
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     await dbService.collection("nweets").add({
-      nweet,
+      text: nweet,
       createdAt: Date.now(),
+      creatorId: userObj.uid,
     });
     setNweet("");
   };
-  const onChange = (e) => {
+  const onChange = e => {
     const {
       target: { value },
     } = e;
     setNweet(value);
   };
-  console.log(nweets);
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -46,9 +49,9 @@ const Home = () => {
         <input type="submit" value="Nweet" />
       </form>
       <div>
-        {nweets.map((nweet) => (
+        {nweets.map(nweet => (
           <div key={nweet.id}>
-            <h4>{nweet.nweet}</h4>
+            <h4>{nweet.text}</h4>
           </div>
         ))}
       </div>
