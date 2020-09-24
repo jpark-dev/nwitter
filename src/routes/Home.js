@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "myFirebase";
+import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
@@ -23,7 +24,7 @@ const Home = ({ userObj }) => {
         id: doc.id,
         ...doc.data(),
       }));
-      console.log(nweetArr);
+      setNweets(nweetArr);
     });
   }, []);
   const onSubmit = async e => {
@@ -55,9 +56,7 @@ const Home = ({ userObj }) => {
       </form>
       <div>
         {nweets.map(nweet => (
-          <div key={nweet.id}>
-            <h4>{nweet.text}</h4>
-          </div>
+          <Nweet key={nweet.id} nweetObj={nweet} />
         ))}
       </div>
     </div>
