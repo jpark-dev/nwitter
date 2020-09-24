@@ -1,38 +1,47 @@
 import React, { useEffect, useState } from "react";
 import { dbService } from "myFirebase";
+import Nweet from "components/Nweet";
 
-const Home = () => {
+const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
-  const getNweets = async () => {
-    const dbNweets = await dbService.collection("nweets").get();
-    dbNweets.forEach((doc) => {
-      const nweetObj = {
-        ...doc.data(),
-        id: doc.id,
-      };
-      setNweets((prev) => [nweetObj, ...prev]);
-    });
-  };
+  // mapping through dbService.collection would not re-render
+  // const getNweets = async () => {
+  //   const dbNweets = await dbService.collection("nweets").get();
+  //   dbNweets.forEach(doc => {
+  //     const nweetObj = {
+  //       ...doc.data(),
+  //       id: doc.id,
+  //     };
+  //     setNweets(prev => [nweetObj, ...prev]);
+  //   });
+  // };
 
   useEffect(() => {
-    getNweets();
+    // getNweets();
+    dbService.collection("nweets").onSnapshot(snapshot => {
+      const nweetArr = snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setNweets(nweetArr);
+    });
   }, []);
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     await dbService.collection("nweets").add({
-      nweet,
+      text: nweet,
       createdAt: Date.now(),
+      creatorId: userObj.uid,
     });
     setNweet("");
   };
-  const onChange = (e) => {
+  const onChange = e => {
     const {
       target: { value },
     } = e;
     setNweet(value);
   };
-  console.log(nweets);
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -46,10 +55,12 @@ const Home = () => {
         <input type="submit" value="Nweet" />
       </form>
       <div>
-        {nweets.map((nweet) => (
-          <div key={nweet.id}>
-            <h4>{nweet.nweet}</h4>
-          </div>
+        {nweets.map(nweet => (
+          <Nweet
+            key={nweet.id}
+            nweetObj={nweet}
+            isOwner={nweet.creatorId === userObj.uid}
+          />
         ))}
       </div>
     </div>
