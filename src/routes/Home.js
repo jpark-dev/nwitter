@@ -30,11 +30,11 @@ const Home = ({ userObj }) => {
   }, []);
   const onSubmit = async e => {
     e.preventDefault();
-    await dbService.collection("nweets").add({
-      text: nweet,
-      createdAt: Date.now(),
-      creatorId: userObj.uid,
-    });
+    // await dbService.collection("nweets").add({
+    //   text: nweet,
+    //   createdAt: Date.now(),
+    //   creatorId: userObj.uid,
+    // });
     setNweet("");
   };
   const onChange = e => {
