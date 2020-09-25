@@ -42,6 +42,14 @@ const Home = ({ userObj }) => {
     } = e;
     setNweet(value);
   };
+  const onFileChange = e => {
+    const {
+      target: { files },
+    } = e;
+    const selectedFile = files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(selectedFile);
+  };
   return (
     <div>
       <form onSubmit={onSubmit}>
@@ -52,6 +60,7 @@ const Home = ({ userObj }) => {
           maxLength={120}
           value={nweet}
         />
+        <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Nweet" />
       </form>
       <div>
