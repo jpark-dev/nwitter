@@ -5,6 +5,7 @@ import Nweet from "components/Nweet";
 const Home = ({ userObj }) => {
   const [nweet, setNweet] = useState("");
   const [nweets, setNweets] = useState([]);
+  const [attachment, setAttachment] = useState();
   // mapping through dbService.collection would not re-render
   // const getNweets = async () => {
   //   const dbNweets = await dbService.collection("nweets").get();
@@ -48,6 +49,12 @@ const Home = ({ userObj }) => {
     } = e;
     const selectedFile = files[0];
     const reader = new FileReader();
+    reader.onloadend = finishedEvent => {
+      const {
+        currentTarget: { result },
+      } = finishedEvent;
+      setAttachment(result);
+    };
     reader.readAsDataURL(selectedFile);
   };
   return (
@@ -62,6 +69,7 @@ const Home = ({ userObj }) => {
         />
         <input type="file" accept="image/*" onChange={onFileChange} />
         <input type="submit" value="Nweet" />
+        {attachment && <img src={attachment} width="50px" height="50px" />}
       </form>
       <div>
         {nweets.map(nweet => (
