@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { dbService } from "myFirebase";
+import { v4 as uuidv4 } from "uuid";
+import { dbService, storageService } from "myFirebase";
 import Nweet from "components/Nweet";
 
 const Home = ({ userObj }) => {
@@ -30,6 +31,9 @@ const Home = ({ userObj }) => {
   }, []);
   const onSubmit = async e => {
     e.preventDefault();
+    const fileRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+    const response = await fileRef.putString(attachment, "data_url");
+    console.log(response);
     // await dbService.collection("nweets").add({
     //   text: nweet,
     //   createdAt: Date.now(),
@@ -75,7 +79,7 @@ const Home = ({ userObj }) => {
         <input type="submit" value="Nweet" />
         {attachment && (
           <div>
-            <img src={attachment} width="50px" height="50px" />
+            <img src={attachment} width="50px" height="50px" alt="thumb" />
             <button onClick={onClearAttachment}>Clear</button>
           </div>
         )}
