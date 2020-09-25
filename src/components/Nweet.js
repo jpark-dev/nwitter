@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import { dbService } from "myFirebase";
+import { dbService, storageService } from "myFirebase";
 
 const Nweet = ({ nweetObj, isOwner }) => {
   const [editing, setEditing] = useState(false);
   const [newNweet, setNewNweet] = useState(nweetObj.text);
 
-  const onDeleteClick = () => {
+  const onDeleteClick = async () => {
     const proceedDelete = window.confirm("Delete this nweet?");
 
     if (proceedDelete) {
-      dbService.doc(`nweets/${nweetObj.id}`).delete();
+      await dbService.doc(`nweets/${nweetObj.id}`).delete();
+      await storageService.refFromURL(nweetObj.attachmentUrl).delete();
     }
   };
   const toggleEditing = () => {
@@ -51,6 +52,14 @@ const Nweet = ({ nweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{nweetObj.text}</h4>
+          {nweetObj.attachmentUrl && (
+            <img
+              src={nweetObj.attachmentUrl}
+              width="50px"
+              height="50px"
+              alt="profile_photo"
+            />
+          )}
           {isOwner && (
             <>
               <button onClick={onDeleteClick}>Delete</button>
