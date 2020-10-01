@@ -13,7 +13,7 @@ At the end of the project, I'd like to be more familiar with followings:
 - Real-time CRUD of Nweets
 - User Authentication
 - User Profile page
-- Upload photos
+- Upload photos via firestorage
 - social login (google/github login) via firebase
 - email login (email/password) via firebase
 - noSQL database manipulation via firebase
@@ -45,7 +45,9 @@ ii. Go to [firebase website](https://firebase.google.com) and register with your
 
 iii. Once registered, go to your [firebase console](https://console.firebase.google.com/) and create a new project. Name it as 'nwitter'
 
-iiii. Once created, add a new app called 'Nwitter' and check the information under the 'Firebase SDK Snippet'.
+iv. Once created, add a new app called 'Nwitter' and check the information under the 'Firebase SDK Snippet'.
+
+v. Make sure to read how firebase storage works, pay attention to the pricing scheme as google may charge you for the amount of data used.
 
 ### 3. Filling empty values with credentials from firebase
 
