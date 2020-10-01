@@ -20,7 +20,7 @@ At the end of the project, I'd like to be more familiar with followings:
 - React frontend for real-time tweets
 
 ## Check out the working app!!
-- This is to be implemented soon.
+- [Click here -> NWITTER](https://jpark-dev.github.io/nwitter)
 
 ## Application Setup Guide
 
