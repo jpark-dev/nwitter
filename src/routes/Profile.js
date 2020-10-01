@@ -1,24 +1,24 @@
-import { authService, dbService } from "myFirebase";
-import React, { useEffect, useState } from "react";
+import { authService } from "myFirebase";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export default ({ userObj, refreshUser }) => {
   const history = useHistory();
   const [newDisplayName, setNewDisplayName] = useState(userObj.displayName);
 
-  const onClick = () => {
+  const onLogOutClick = () => {
     authService.signOut();
     history.push("/");
   };
-  const getMyNweets = async () => {
-    const nweets = await dbService
-      .collection("nweets")
-      .where("creatorId", "==", userObj.uid)
-      .orderBy("createdAt")
-      .get();
+  // const getMyNweets = async () => {
+  //   const nweets = await dbService
+  //     .collection("nweets")
+  //     .where("creatorId", "==", userObj.uid)
+  //     .orderBy("createdAt")
+  //     .get();
 
-    console.log(nweets.docs.map(doc => doc.data()));
-  };
+  //   console.log(nweets.docs.map(doc => doc.data()));
+  // };
 
   const onChange = e => {
     const {
@@ -37,22 +37,33 @@ export default ({ userObj, refreshUser }) => {
     }
   };
 
-  useEffect(() => {
-    getMyNweets();
-  }, []);
+  // useEffect(() => {
+  //   getMyNweets();
+  // }, []);
 
   return (
-    <>
-      <form onSubmit={onSubmit}>
+    <div className="container">
+      <form onSubmit={onSubmit} className="profileForm">
         <input
           type="text"
+          autoFocus
           placeholder="Display Name"
           onChange={onChange}
           value={newDisplayName}
+          className="formInput"
         />
-        <input type="submit" value="Update Profile" />
+        <input
+          type="submit"
+          value="Update Profile"
+          className="formBtn"
+          style={{
+            marginTop: 10,
+          }}
+        />
       </form>
-      <button onClick={onClick}>Log Out</button>
-    </>
+      <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>
+        Log Out
+      </span>
+    </div>
   );
 };
