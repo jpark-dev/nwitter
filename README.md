@@ -20,10 +20,10 @@ At the end of the project, I'd like to be more familiar with followings:
 - React frontend for real-time tweets
 
 ## Current Issues/works
-- [] Created Nweets are not in order (02/Oct/2020)
-- [] Show user name for each nweeets
-- [] Show user profile photo for each nweets (seperate from photo uploads)
-- [] Make bigger size componets for tablet/desktop viewports
+- [ ] Created Nweets are not in order (02/Oct/2020)
+- [ ] Show user name for each nweeets
+- [ ] Show user profile photo for each nweets (seperate from photo uploads)
+- [ ] Make bigger size componets for tablet/desktop viewports
 
 ## Check out the working app!!
 - [Click here -> NWITTER](https://jpark-dev.github.io/nwitter)
