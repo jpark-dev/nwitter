@@ -185,6 +185,11 @@ form {
   font-size: 14px;
 }
 
+.nweet h6 {
+  font-size: 8px;
+  text-align: right;
+}
+
 .nweet img {
   right: -10px;
   top: 20px;

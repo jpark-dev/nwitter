@@ -56,6 +56,7 @@ const Nweet = ({ nweetObj, isOwner }) => {
       ) : (
         <>
           <h4>{nweetObj.text}</h4>
+          {isOwner ? <h6>- from you</h6> : <h6>- from {nweetObj.creatorId}</h6>}
           {nweetObj.attachmentUrl && (
             <img
               src={nweetObj.attachmentUrl}
