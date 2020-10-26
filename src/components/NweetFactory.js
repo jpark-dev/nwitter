@@ -9,10 +9,10 @@ const NweetFactory = ({ userObj }) => {
   const [attachment, setAttachment] = useState("");
 
   const onSubmit = async e => {
+    e.preventDefault();
     if (nweet === "") {
       return;
     }
-    e.preventDefault();
     let attachmentUrl = "";
     if (attachment !== "") {
       const attachmentRef = storageService
@@ -49,7 +49,9 @@ const NweetFactory = ({ userObj }) => {
       } = finishedEvent;
       setAttachment(result);
     };
-    reader.readAsDataURL(selectedFile);
+    if (Boolean(selectedFile)) {
+      reader.readAsDataURL(selectedFile);
+    }
   };
   const onClearAttachment = () => {
     setAttachment("");
