@@ -8,13 +8,16 @@ const Home = ({ userObj }) => {
 
   useEffect(() => {
     // getNweets();
-    dbService.collection("nweets").onSnapshot(snapshot => {
-      const nweetArr = snapshot.docs.map(doc => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      setNweets(nweetArr);
-    });
+    dbService
+      .collection("nweets")
+      .orderBy("createdAt", "desc")
+      .onSnapshot(snapshot => {
+        const nweetArr = snapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        setNweets(nweetArr);
+      });
   }, []);
 
   return (
