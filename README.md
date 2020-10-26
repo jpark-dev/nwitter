@@ -19,10 +19,20 @@ At the end of the project, I'd like to be more familiar with followings:
 - noSQL database manipulation via firebase
 - React frontend for real-time tweets
 
+## Stack
+- React.js
+- Node.js
+- HTML5/CSS3
+- Google Firebase
+- Git
+
+## Solved Issues
+- [x] Nweets are now in chronological order (25/Oct/2020)
+- [-] Show user id for each Nweet
+
 ## Current Issues/works
-- [ ] Created Nweets are not in order (02/Oct/2020)
-- [ ] Show user name for each nweeets
-- [ ] Show user profile photo for each nweets (seperate from photo uploads)
+- [ ] Show user name for each Nweet
+- [ ] Show user profile photo for each Nweet (seperate from photo uploads)
 - [ ] Make bigger size componets for tablet/desktop viewports
 
 ## Check out the working app!!
