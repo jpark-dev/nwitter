@@ -34,6 +34,9 @@ At the end of the project, I'd like to be more familiar with followings:
 - [ ] Show user name for each Nweet
 - [ ] Show user profile photo for each Nweet (seperate from photo uploads)
 - [ ] Make bigger size componets for tablet/desktop viewports
+- [ ] Wireframing on Figma
+- [ ] More data on profile page
+- [ ] 1:1 message 
 
 ## Check out the working app!!
 - [Click here -> NWITTER](https://jpark-dev.github.io/nwitter)
